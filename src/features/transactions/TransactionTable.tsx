@@ -3,29 +3,33 @@ import { TransactionState } from '../../app/transactionReducer'
 import { useDispatch, useSelector } from 'react-redux';
 
 export function TransactionTable() {
-  const transactions = useSelector<TransactionState, TransactionState["transactions"]>((state) => state.transactions)
+  const transactions = useSelector<TransactionState , TransactionState["transactions"]>((state) => state.transactions)
+  console.log(transactions);
+
 
   return (
     <div className='table-container'>
       {
           transactions.length !== 0 ?
           <table>
+          <thead>
           <tr>
             <th>Title</th>
             <th>Amount(PLN)</th>
             <th>Amount(EUR)</th>
             <th>Options</th>
           </tr>
+          </thead>
+          <tbody>
           {transactions.map(item => (
-
-            <tr>
-              <td>{item}</td>
-              <td>{item}</td>
-              <td>{item}</td>
+            <tr key={item.title}>
+              <td>{item.title}</td>
+              <td>{item.amount}</td>
+              <td>asd</td>
               <td>Delete</td>
             </tr>
-
           ))}
+          </tbody>
          </table> : "No transactions yet"
         }
     </div>

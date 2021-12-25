@@ -1,10 +1,12 @@
 import { Action } from "./actions"
 
 export interface TransactionState {
-    transactions: string[]
+    transactions: { title: string; amount: string; }[]
 }
 const initialState = {
-    transactions:[]
+    transactions:[{
+        title: "New Book Rust", amount:"100"
+    }]
 }
 
 export const transactionReducer = (state: TransactionState = initialState, action: Action) => {
