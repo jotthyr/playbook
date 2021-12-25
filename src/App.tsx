@@ -1,23 +1,30 @@
 import React from 'react';
-import logo from './logo.svg';
+import AddTransaction  from './features/transactions/AddTransaction';
+import { TransactionTable } from './features/transactions/TransactionTable';
 import './App.css';
+import { useDispatch, useSelector } from 'react-redux';
+import { TransactionState } from "./app/transactionReducer";
+import { addTransaction } from './app/actions';
 
 function App() {
+  const transactions = useSelector<TransactionState, TransactionState["transactions"]>((state) => state.transactions)
+  const dispatch = useDispatch()
+
+  const onAddTransaction = (transaction: string) => {
+    dispatch(addTransaction(transaction))
+  }
+
+  console.log(transactions);
+
   return (
     <div className="App">
       <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
+        <div className="add-transaction">
+          <h1>List of expenses</h1>
+          <p>1 EUR = (API) PLN</p>
+        </div>
+        <AddTransaction addTransaction={onAddTransaction}/>
+        <TransactionTable />
       </header>
     </div>
   );
