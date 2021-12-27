@@ -9,17 +9,25 @@ interface TransactionFormProps {
 const TransactionForm: React.FC<TransactionFormProps> = ({ addTransaction }) => {
   const [isDisabled, setIsDisabled] = useState(true);
   const [isTitleValid, setisTitleValid] = useState(false);
-  const [isAmountValid, setisAmountValid] = useState(true);
+  const [isAmountValid, setisAmountValid] = useState(false);
   const [transaction, setTransaction] = useState<Transaction>({
     title: '',
     amount: '',
   });
   const updateTransaction = (e:ChangeEvent<HTMLInputElement>) => {
 
-    let t = e.target.value;
+    let t = e.target.value.trim();
     let twoDecimal = (t.indexOf(".") >= 0) ? (t.substr(0, t.indexOf(".")) + t.substr(t.indexOf("."), 3)) : t;
-
+    console.log('tytul',t,twoDecimal)
+    console.log('tytul1',isTitleValid, isAmountValid)
     if (e.target.name === "amount") {
+
+      if ( t !== '') {
+        setisAmountValid(true);
+      } else {
+        setisAmountValid(false);
+      }
+
       if(!isNaN(e.target.value as any)) {
         setTransaction({
           ...transaction,
@@ -35,10 +43,11 @@ const TransactionForm: React.FC<TransactionFormProps> = ({ addTransaction }) => 
 
 
     if (e.target.name === "title"){
-      if (t.length <= 4) {
-        setisTitleValid(false);
-      } else {
+      let re = /^[a-zA-Z0-9!@#\$%\^\&*\)\(+=.,_\- ]{4,}$/
+      if (re.test(t)) {
         setisTitleValid(true);
+      } else {
+        setisTitleValid(false);
       }
     }
 
@@ -55,6 +64,8 @@ const TransactionForm: React.FC<TransactionFormProps> = ({ addTransaction }) => 
       title: '',
       amount: '',
     });
+    setisTitleValid(false);
+    setIsDisabled(true);
   };
 
 
