@@ -9,14 +9,15 @@ interface TransactionTableProps {
 const TransactionTable: React.FC<TransactionTableProps> = ({ eurPrice, deleteTransaction }) => {
   const transactions = useSelector<TransactionState, TransactionState['transactions']>((state) => state.transactions);
 
-  let totalPLN = transactions.reduce( (acc, obj) => acc + parseFloat(obj.amount), 0);
-  let totalEUR = (totalPLN/eurPrice).toFixed(2)
+  let totalPLN = transactions.reduce((acc, obj) => acc + parseFloat(obj.amount), 0);
+  let totalEUR = (totalPLN / eurPrice).toFixed(2);
 
   return (
     <div className="table-container">
       {
         transactions.length !== 0 ?
-          <><table>
+          <>
+          <table>
             <thead>
               <tr>
                 <th>Title</th>
@@ -36,9 +37,9 @@ const TransactionTable: React.FC<TransactionTableProps> = ({ eurPrice, deleteTra
               ))}
             </tbody>
           </table>
-          <br/>
+          <br />
           <div>
-          Sum:  {totalPLN} PLN ({totalEUR} EUR)
+            Sum:  {totalPLN} PLN ({totalEUR} EUR)
           </div>
           </> : 'No transactions yet'
         }

@@ -1,5 +1,3 @@
-import { totalmem } from 'os';
-import { act } from 'react-dom/test-utils';
 import { Action } from './actions';
 
 export type Transaction = {

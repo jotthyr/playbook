@@ -1,44 +1,57 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app), using the [Redux](https://redux.js.org/) and [Redux Toolkit](https://redux-toolkit.js.org/) template.
+# To properly run aplication you should follow this steps:
 
-## Available Scripts
+## Requirements
+To run this project you should have:
+- [node js](https://nodejs.org/en/download/)
+- [git](https://git-scm.com/downloads)
+- [docker](https://www.docker.com/get-started)
 
-In the project directory, you can run:
+## Clone project
+- Clone throught HTTPS.
+```shell
+    $ cd ~/Desktop
+    $ git clone https://github.com/jotthyr/playbook.git playbook
+```
+## Running up the project
+> After installation required [software](https://nodejs.org/) and cloning the project you should choose way:
 
-### `npm start`
+# Docker way
 
-Runs the app in the development mode.<br />
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+### Starting docker container
 
-The page will reload if you make edits.<br />
-You will also see any lint errors in the console.
+- Open console. Make sure that you are in the project folder:
+```shell
+    $ docker build -t mumin .
 
-### `npm test`
+```
 
-Launches the test runner in the interactive watch mode.<br />
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+```shell
+    $ docker run -p 8080:8080 mumin
 
-### `npm run build`
+```
 
-Builds the app for production to the `build` folder.<br />
-It correctly bundles React in production mode and optimizes the build for the best performance.
+# Straight way
 
-The build is minified and the filenames include the hashes.<br />
-Your app is ready to be deployed!
+### Install dependencies
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+- Open console. Make sure that you are in the project folder
+```shell
+    $ npm i
 
-### `npm run eject`
+```
+### Running and building client
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+- To spinup the client you should:
+```shell
+    $ npm start
+```
+>After executing all mandatory things, application should work on the browser after typing localhost:8080
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
+### Compiles and minifies for production
+```
+npm run build
+```
+### Lints and fixes files
+```
+npm run lint
+```
