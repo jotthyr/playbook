@@ -7,7 +7,6 @@ interface TransactionFormProps {
 }
 
 const TransactionForm: React.FC<TransactionFormProps> = ({ addTransaction }) => {
-  const [isDisabled, setIsDisabled] = useState(true);
   const [isTitleValid, setisTitleValid] = useState(false);
   const [isAmountValid, setisAmountValid] = useState(false);
   const [transaction, setTransaction] = useState<Transaction>({
@@ -43,7 +42,7 @@ const TransactionForm: React.FC<TransactionFormProps> = ({ addTransaction }) => 
 
 
     if (e.target.name === "title"){
-      let re = /^[a-zA-Z0-9!@#\$%\^\&*\)\(+=.,_\- ]{4,}$/
+      let re = /^[a-zA-Z0-9!@#\$%\^\&*\)\(+=.,_\- ]{5,}$/
       if (re.test(t)) {
         setisTitleValid(true);
       } else {
@@ -51,11 +50,7 @@ const TransactionForm: React.FC<TransactionFormProps> = ({ addTransaction }) => 
       }
     }
 
-    if (isTitleValid && isAmountValid) {
-      setIsDisabled(false);
-    } else {
-      setIsDisabled(true)
-    }
+
   };
 
   const handleAddTransaction = () => {
@@ -65,7 +60,7 @@ const TransactionForm: React.FC<TransactionFormProps> = ({ addTransaction }) => 
       amount: '',
     });
     setisTitleValid(false);
-    setIsDisabled(true);
+    setisAmountValid(false);
   };
 
 
@@ -81,7 +76,7 @@ const TransactionForm: React.FC<TransactionFormProps> = ({ addTransaction }) => 
       </div>
       <div className="add-transaction-button">
         <div></div>
-        <div><button disabled={isDisabled} onClick={handleAddTransaction}>Add</button></div>
+        <div><button disabled={!(isAmountValid && isTitleValid)} onClick={handleAddTransaction}>Add</button></div>
       </div>
     </div>
   );
