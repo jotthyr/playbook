@@ -28,8 +28,7 @@ export const transactionReducer = (state: TransactionState = initialState, actio
     case 'DELETE_TRANSACTION': {
       return {
         ...state,
-        // @ts-ignore
-        transactions: state.transactions.filter((item, index) => item.title !== action.payload)
+        transactions: state.transactions.filter((item, index) => item.title !== action.payload.title)
       }
     }
     default:

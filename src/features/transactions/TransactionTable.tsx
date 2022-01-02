@@ -32,7 +32,7 @@ const TransactionTable: React.FC<TransactionTableProps> = ({ eurPrice, deleteTra
                   <td>{item.title}</td>
                   <td>{item.amount}</td>
                   <td>{(parseFloat(item.amount) / eurPrice).toFixed(2)}</td>
-                  <td onClick={() => deleteTransaction(item.title)}>Delete</td>
+                  <td onClick={() => deleteTransaction(item)}>Delete</td>
                 </tr>
               ))}
             </tbody>
